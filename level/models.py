@@ -1,7 +1,7 @@
 from django.db import models
 
 
-type_choices = (('0', 'PING'),
+type_choices = (('0', 'PIN'),
                 ('1', 'PASSWORD'))
 
 class Level(models.Model):

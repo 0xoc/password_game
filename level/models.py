@@ -45,5 +45,8 @@ class Level(models.Model):
     second_notif = models.BooleanField(default=False)
     
 
+    def __str__(self):
+        return self.name
+
 
     

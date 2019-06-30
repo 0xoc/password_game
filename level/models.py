@@ -1,8 +1,8 @@
 from django.db import models
 
 
-type_choices = (('PIN', '0'),
-                ('PASSWORD', '1'))
+type_choices = (('0', 'PING'),
+                ('1', 'PASSWORD'))
 
 class Level(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)

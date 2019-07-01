@@ -11,6 +11,8 @@ Icon
 .venv
 
 .vscode
+static
+media
 
 # Thumbnails
 ._*

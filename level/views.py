@@ -6,8 +6,6 @@ from rest_framework.response import Response
 import hashlib 
 import json
 from rest_framework import status
-# encoding GeeksforGeeks using md5 hash 
-# function
 
 
 def get_latest_hash():

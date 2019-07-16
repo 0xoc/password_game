@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Level
 
+
 class LevelSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -36,5 +37,7 @@ class LevelSerializer(serializers.ModelSerializer):
             'passed', 
             'incoming_call', 
             'clipboard', 
-            'second_notif', 
-        ] 
+            'second_notif',
+            'contact_name',
+            'contact_number',
+        ]

@@ -43,10 +43,9 @@ class Level(models.Model):
     clipboard = models.BooleanField(default=False)
 
     second_notif = models.BooleanField(default=False)
-    
+
+    contact_name = models.CharField(max_length=255, null=True, blank=True)
+    contact_number = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return str(self.name)
-
-
-    

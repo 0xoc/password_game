@@ -22,7 +22,7 @@ class ListLevelsView(GenericAPIView):
         pass
     
     def get(self, request):
-        all_levels = Level.objects.all()
+        all_levels = Level.objects.all().order_by('id')
 
         data = LevelSerializer(all_levels, many=True).data
         data_hash = hashlib.md5(json.dumps(data).encode('utf-8'))
@@ -30,6 +30,7 @@ class ListLevelsView(GenericAPIView):
         response = {'hash': str(data_hash.hexdigest()), 'levels': data}
 
         return Response(response)
+
 
 class IsUpToDate(GenericAPIView):
 

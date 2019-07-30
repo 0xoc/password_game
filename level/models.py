@@ -4,6 +4,7 @@ from django.db import models
 type_choices = (('0', 'PIN'),
                 ('1', 'PASSWORD'))
 
+
 class Level(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     time = models.CharField(max_length=255, blank=True, null=True)
@@ -25,12 +26,10 @@ class Level(models.Model):
     hint_1 = models.CharField(max_length=255, blank=True, null=True)
     hint_2 = models.CharField(max_length=255, blank=True, null=True)
 
-
     type = models.CharField(max_length=1, choices=type_choices, default='0')
     image = models.ImageField(max_length=255, blank=True, null=True)
     cover = models.ImageField(max_length=255, blank=True, null=True)
     incoming_call_image = models.ImageField(max_length=255, blank=True, null=True)
-
 
     hint_count = models.IntegerField(blank=True, null=True, default=0)
     pin_count = models.IntegerField(blank=True, null=True, default=4)

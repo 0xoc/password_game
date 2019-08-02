@@ -30,7 +30,7 @@ class ListLevelsView(GenericAPIView):
 
         response = {'hash': str(data_hash.hexdigest()), 'levels': data}
 
-        response = json.dumps(caesar_cipher_encoder(response,"G&tAr>GF-JD$$G;_[82z3`:T}a[ma`}v\:td3-$V.@.U}\'cR}"))
+        response = json.dumps(caesar_cipher_encoder(json.dumps(response),"G&tAr>GF-JD$$G;_[82z3`:T}a[ma`}v\:td3-$V.@.U}\'cR}"))
 
         return HttpResponse(response)
 

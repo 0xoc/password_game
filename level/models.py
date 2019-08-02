@@ -5,6 +5,12 @@ type_choices = (('0', 'PIN'),
                 ('1', 'PASSWORD'))
 
 
+class PassKey(models.Model):
+    key = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.key
+
 class Level(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     time = models.CharField(max_length=255, blank=True, null=True)

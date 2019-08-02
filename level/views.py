@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
-from .models import Level
+from .models import Level, PassKey
 from .serializers import LevelSerializer
 from rest_framework.response import Response
 import hashlib 
@@ -30,7 +30,9 @@ class ListLevelsView(GenericAPIView):
 
         response = {'hash': str(data_hash.hexdigest()), 'levels': data}
 
-        response = json.dumps(caesar_cipher_encoder(json.dumps(response),"46J9=C-$j^Hq7RQX+qDTSut^=3H66nARMD&LT8q-C?Bn&DRzVz"))
+        pass_key = PassKey.objects.last()
+
+        response = json.dumps(caesar_cipher_encoder(json.dumps(response),pass_key.key))
 
         return HttpResponse(response)
 

@@ -6,7 +6,8 @@ from rest_framework.response import Response
 import hashlib 
 import json
 from rest_framework import status
-
+from django.http import HttpResponse
+from .caesar_cipher_encoder import caesar_cipher_encoder
 
 def get_latest_hash():
     all_levels = Level.objects.all()
@@ -29,7 +30,9 @@ class ListLevelsView(GenericAPIView):
 
         response = {'hash': str(data_hash.hexdigest()), 'levels': data}
 
-        return Response(response)
+        response = json.dumps(caesar_cipher_encoder(response,"G&tAr>GF-JD$$G;_[82z3`:T}a[ma`}v\:td3-$V.@.U}\'cR}"))
+
+        return HttpResponse(response)
 
 
 class IsUpToDate(GenericAPIView):

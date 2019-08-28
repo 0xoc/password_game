@@ -26,6 +26,9 @@ class Level(models.Model):
     hint_1 = models.CharField(max_length=255, blank=True, null=True)
     hint_2 = models.CharField(max_length=255, blank=True, null=True)
 
+    hint1farsi = models.CharField(max_length=255, blank=True, null=True)
+    hint2farsi = models.CharField(max_length=255, blank=True, null=True)
+
     type = models.CharField(max_length=1, choices=type_choices, default='0')
     image = models.ImageField(max_length=255, blank=True, null=True)
     cover = models.ImageField(max_length=255, blank=True, null=True)

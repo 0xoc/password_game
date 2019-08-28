@@ -26,6 +26,8 @@ class LevelSerializer(serializers.ModelSerializer):
             'second_text', 
             'hint_1', 
             'hint_2', 
+            'hint1farsi', 
+            'hint2farsi', 
             'type', 
             'image', 
             'cover', 

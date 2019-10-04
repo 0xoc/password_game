@@ -62,6 +62,22 @@ class UserPackageCreateSerializer(serializers.ModelSerializer):
         model = PackageUserRelation
         fields = ['package', ]
 
+    def validate(self, attrs):
+        user_profile = self.context.get('user_profile')
+        pack = attrs.get('package')
+
+        try:
+            user_profile.pur.get(pk=pack.pk)
+            raise serializers.ValidationError("You have this pack")
+        except PackageUserRelation.DoesNotExist:
+            if user_profile.coins < pack.price:
+                raise serializers.ValidationError("Not enough coins")
+            else:
+                user_profile.coins -= pack.price
+                user_profile.save()
+
+        return attrs
+
     def create(self, validated_data):
         pur = PackageUserRelation(user_profile=self.context.get('user_profile'), package=validated_data.get('package'))
         pur.save()

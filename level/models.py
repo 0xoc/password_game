@@ -1,8 +1,19 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 type_choices = (('0', 'PIN'),
                 ('1', 'PASSWORD'))
+
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_profile")
+    coins = models.IntegerField(default=0)
+
+
+class PackageUserRelation(models.Model):
+    user_profile = models.ForeignKey(UserProfile, related_name="pur", on_delete=models.CASCADE)
+    package = models.ForeignKey("Package", on_delete=models.CASCADE, related_name="pur")
+    passed = models.BooleanField()
 
 
 class Level(models.Model):
@@ -48,3 +59,10 @@ class Level(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Package(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.IntegerField()
+    image = models.ImageField(max_length=255)
+    levels = models.ForeignKey(Level, related_name="pack", on_delete=models.CASCADE)

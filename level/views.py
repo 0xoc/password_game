@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from rest_framework.generics import GenericAPIView
-from .models import Level
-from .serializers import LevelDetailedRetrieveSerializer
+from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
+from rest_framework.permissions import IsAuthenticated
+
+from .models import Level, LevelPackage
+from .serializers import LevelDetailedRetrieveSerializer, PackageSimpleRetrieveSerializer, UserPackageDetailSerializer, \
+    UserPackageCreateSerializer
 from rest_framework.response import Response
 import hashlib 
 import json
@@ -30,6 +32,26 @@ class ListLevelsView(GenericAPIView):
         response = {'hash': str(data_hash.hexdigest()), 'levels': data}
 
         return Response(response)
+
+
+class ListPacksView(ListAPIView):
+    serializer_class = PackageSimpleRetrieveSerializer
+    queryset = LevelPackage.objects.all()
+
+
+class ListUserPackage(ListAPIView):
+    permission_classes = (IsAuthenticated, )
+    serializer_class = UserPackageDetailSerializer
+
+    def get_queryset(self):
+        return self.user.user_profile.pur.all()
+
+
+class AddUserPack(CreateAPIView):
+    serializer_class = UserPackageCreateSerializer
+
+    def get_serializer_context(self):
+        return {'user_profile': self.user.user_profile}
 
 
 class IsUpToDate(GenericAPIView):

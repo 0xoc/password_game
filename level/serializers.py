@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Level, LevelPackage
+from .models import Level, LevelPackage, PackageUserRelation
 
 
 class LevelDetailedRetrieveSerializer(serializers.ModelSerializer):
@@ -45,3 +45,26 @@ class PackageDetailedRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = LevelPackage
         fields = ['pk', 'name', 'price', 'image', 'levels']
+
+
+class UserPackageDetailSerializer(serializers.ModelSerializer):
+
+    package = PackageDetailedRetrieveSerializer()
+
+    class Meta:
+        model = PackageUserRelation
+        fields = ['pk', 'user_profile', 'package', 'passed']
+
+
+class UserPackageCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PackageUserRelation
+        fields = ['package', ]
+
+    def create(self, validated_data):
+        pur = PackageUserRelation(user_profile=self.context.get('user_profile'), package=validated_data.get('package'))
+        pur.save()
+
+        return pur
+

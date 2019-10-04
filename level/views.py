@@ -48,6 +48,7 @@ class ListUserPackage(ListAPIView):
 
 
 class AddUserPack(CreateAPIView):
+    permission_classes = (IsAuthenticated, )
     serializer_class = UserPackageCreateSerializer
 
     def get_serializer_context(self):

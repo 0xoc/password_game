@@ -44,14 +44,14 @@ class ListUserPackage(ListAPIView):
     serializer_class = UserPackageDetailSerializer
 
     def get_queryset(self):
-        return self.user.user_profile.pur.all()
+        return self.request.user.user_profile.pur.all()
 
 
 class AddUserPack(CreateAPIView):
     serializer_class = UserPackageCreateSerializer
 
     def get_serializer_context(self):
-        return {'user_profile': self.user.user_profile}
+        return {'user_profile': self.request.user.user_profile}
 
 
 class IsUpToDate(GenericAPIView):

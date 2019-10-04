@@ -6,7 +6,7 @@ type_choices = (('0', 'PIN'),
 
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
     coins = models.IntegerField(default=0)
 
 

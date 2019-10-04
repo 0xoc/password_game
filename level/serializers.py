@@ -53,7 +53,7 @@ class UserPackageDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PackageUserRelation
-        fields = ['pk', 'user_profile', 'package', 'passed']
+        fields = ['pk', 'user_profile', 'package', ]
 
 
 class UserPackageCreateSerializer(serializers.ModelSerializer):

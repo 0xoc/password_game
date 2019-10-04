@@ -7,10 +7,17 @@ class LevelPackageAdmin(admin.ModelAdmin):
 
 
 class PackageUserRelationAdmin(admin.ModelAdmin):
-    list_display = ['user_profile', 'package__name', 'package__price']
+    list_display = ['pk', 'user_profile', 'package', ]
+
+    def get_package(self, instance):
+        return instance.name
+
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'user', 'coins']
 
 
 admin.site.register(Level)
 admin.site.register(LevelPackage,  LevelPackageAdmin)
 admin.site.register(PackageUserRelation, PackageUserRelationAdmin)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)

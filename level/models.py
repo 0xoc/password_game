@@ -13,7 +13,6 @@ class UserProfile(models.Model):
 class PackageUserRelation(models.Model):
     user_profile = models.ForeignKey(UserProfile, related_name="pur", on_delete=models.CASCADE)
     package = models.ForeignKey("LevelPackage", on_delete=models.CASCADE, related_name="pur")
-    passed = models.BooleanField()
 
 
 class Level(models.Model):

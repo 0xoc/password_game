@@ -66,5 +66,5 @@ class Level(models.Model):
 class LevelPackage(models.Model):
     name = models.CharField(max_length=255)
     price = models.IntegerField()
-    image = models.ImageField(max_length=255)
+    image = models.ImageField(max_length=255, blank=True, null=True)
     levels = models.ManyToManyField(Level, related_name="pack")

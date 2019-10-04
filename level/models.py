@@ -67,4 +67,4 @@ class LevelPackage(models.Model):
     name = models.CharField(max_length=255)
     price = models.IntegerField()
     image = models.ImageField(max_length=255)
-    levels = models.ForeignKey(Level, related_name="pack", on_delete=models.CASCADE)
+    levels = models.ManyToManyField(Level, related_name="pack")
